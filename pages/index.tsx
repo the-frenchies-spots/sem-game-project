@@ -1,9 +1,24 @@
-import Head from "next/head";
-import Image from "next/image";
-import { Inter } from "next/font/google";
+"use client";
+import React, { useState } from "react";
+import { NewWindow } from "../components";
 
-const inter = Inter({ subsets: ["latin"] });
+const Home = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
-export default function Home() {
-  return <>Page Index</>;
-}
+  return (
+    <div>
+      <h1>Yo Sem !</h1>
+      <button onClick={() => setIsOpen(!isOpen)}>
+        {!isOpen ? "Ouvrir une nouvelle fenêtre" : "Fermé"}
+      </button>
+      {isOpen && (
+        <NewWindow onClose={() => setIsOpen(false)}>
+          <p>Salut Sem !</p>
+          <p>Voici une nouvelle fenêtre ! 👌</p>
+        </NewWindow>
+      )}
+    </div>
+  );
+};
+
+export default Home;
